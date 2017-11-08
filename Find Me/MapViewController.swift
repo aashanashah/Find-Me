@@ -95,13 +95,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
     
     func getAddress(coordinate:CLLocationCoordinate2D)
     {
+        address = ""
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(CLLocation(latitude:coordinate.latitude, longitude:coordinate.longitude), completionHandler: {
             placemarks, error in
             
             if error == nil && placemarks?.count != 0 {
                 let placeMark = placemarks!.last
-                self.address = (placeMark?.name!)! + ", " + (placeMark?.locality!)! + ", " + (placeMark?.administrativeArea!)! + " " + (placeMark?.postalCode)! + ", " + (placeMark?.country!)!
+                if (placeMark?.name) != nil
+                {
+                    self.address.append((placeMark?.name!)! + ",")
+                }
+                if (placeMark?.locality) != nil
+                {
+                    self.address.append((placeMark?.locality!)! + ",")
+                }
+                if (placeMark?.administrativeArea) != nil
+                {
+                    self.address.append((placeMark?.administrativeArea!)! + ",")
+                }
+                if (placeMark?.postalCode) != nil
+                {
+                    self.address.append((placeMark?.postalCode!)! + ",")
+                }
+                if (placeMark?.country) != nil
+                {
+                    self.address.append((placeMark?.country!)! + ",")
+                }
                 self.checkAddress(address: self.address)
                 
             }

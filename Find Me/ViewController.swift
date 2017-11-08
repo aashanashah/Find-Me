@@ -346,8 +346,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             else
             {
+                let trimmedString = city.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 cityCheck.isHidden = false
-                self.cityCheck.image = UIImage(named: "wrong")
+                city.text = trimmedString
+                if city.text == ""
+                {
+                    self.cityCheck.image = UIImage(named: "wrong")
+                }
+                else
+                {
+                    self.cityCheck.image = UIImage(named: "correct")
+                }
             }
         }
         else if textField == city && city.text == ""
@@ -506,6 +515,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if textField == city
         {
             textField.resignFirstResponder()
+        }
+        else if textField == nickname
+        {
+            password.becomeFirstResponder()
+        }
+        else if textField == password
+        {
+            city.becomeFirstResponder()
         }
         return true
     }

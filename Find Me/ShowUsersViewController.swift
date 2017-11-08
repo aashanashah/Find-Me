@@ -22,6 +22,37 @@ class ShowUsersViewController: UIViewController, UITableViewDelegate, UITableVie
         if list.count > 0
         {
             userTable.reloadData()
+            for item in list
+            {
+                address = ""
+                if let dict = item as? [String:AnyObject]
+                {
+                    address.append((dict["city"] as? String)!+",")
+                    address.append((dict["state"] as? String)!+",")
+                    address.append((dict["country"] as? String)!)
+                    annotitle = (dict["nickname"] as? String)!
+                    if dict["latitude"] as? String != "0.0"
+                    {
+                        let latitude = dict["latitude"] as? Double
+                        let longitude = dict["longitude"] as? Double
+                        let location = CLLocationCoordinate2D(latitude: latitude!,longitude: longitude!)
+                        
+                        let span = MKCoordinateSpanMake(0.8, 0.8)
+                        let region = MKCoordinateRegion(center: location, span: span)
+                        mapView.setRegion(region, animated: true)
+                        let anno = MKPointAnnotation();
+                        anno.coordinate = location;
+                        anno.title = annotitle
+                        mapView.addAnnotation(anno)
+                    }
+                    else
+                    {
+                        
+                        getMapBySource(mapView, address:address, title: "Your location", subtitle: "Your location")
+                    }
+                }
+                
+            }
         }
         mapView.delegate = self
         mapView.mapType = MKMapType.standard
@@ -43,45 +74,18 @@ class ShowUsersViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        address = ""
         let cell:UsersTableViewCell = self.userTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! UsersTableViewCell
         if let name = list[indexPath.row] as? [String:AnyObject] {
             cell.name.text = name["nickname"] as? String
-            annotitle = name["nickname"] as? String
         }
         if let city = list[indexPath.row] as? [String:AnyObject] {
             cell.city.text = (city["city"] as? String)! + ","
-            address = cell.city.text!
         }
         if let state = list[indexPath.row] as? [String:AnyObject] {
             cell.state.text = (state["state"] as? String)! + ","
-            address.append(cell.state.text!)
         }
         if let country = list[indexPath.row] as? [String:AnyObject] {
             cell.country.text = country["country"] as? String
-            address.append(cell.country.text!)
-        }
-        if let lat = list[indexPath.row] as? [String:AnyObject]
-        {
-            if lat["latitude"] as? String != "0.0"
-            {
-                let latitude = lat["latitude"] as? Double
-                let longitude = lat["longitude"] as? Double
-                let location = CLLocationCoordinate2D(latitude: latitude!,longitude: longitude!)
-                
-                let span = MKCoordinateSpanMake(0.8, 0.8)
-                let region = MKCoordinateRegion(center: location, span: span)
-                mapView.setRegion(region, animated: true)
-                let anno = MKPointAnnotation();
-                anno.coordinate = location;
-                anno.title = annotitle
-                mapView.addAnnotation(anno)
-            }
-            else
-            {
-                
-                getMapBySource(mapView, address:address, title: "Your location", subtitle: "Your location")
-            }
         }
         return cell
     }
