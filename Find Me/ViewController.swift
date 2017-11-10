@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var statesTable : UITableView!
     @IBOutlet var yearButton : UIButton!
     @IBOutlet var yearTable : UITableView!
+    @IBOutlet var addButton : UIButton!
     
     @IBOutlet var nameCheck : UIImageView!
     @IBOutlet var passCheck : UIImageView!
@@ -34,6 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var errLabel : UILabel!
     
     override func viewDidLoad() {
+         super.viewDidLoad()
         countriesButton.setTitle("Select Country \u{25BE}", for: .normal)
         statesButton.setTitle("Select State \u{25BE}", for: .normal)
         yearButton.setTitle("Select year \u{25BE}", for: .normal)
@@ -54,6 +56,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         locate.layer.cornerRadius = 5
         locate.layer.borderWidth = 1
         locate.layer.borderColor = UIColor.black.cgColor
+        addButton.layer.cornerRadius = 5
+        addButton.layer.borderWidth = 1
+        addButton.layer.borderColor = UIColor.black.cgColor
         countryTableData=Array<String>()
         getCountriesData()
         countriesTable.isHidden = true
@@ -93,8 +98,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         city.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         errLabel.isHidden = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedOnBackgroundView)))
         
-        super.viewDidLoad()
+       
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -119,6 +125,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBAction func buttonClick(sender : UIButton)
     {
+        city.resignFirstResponder()
+        password.resignFirstResponder()
+        nickname.resignFirstResponder()
         if sender == countriesButton
         {
             if countriesTable.isHidden
@@ -303,6 +312,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @objc func textFieldDidChange(_ textField: UITextField)
     {
+        
         if textField == nickname && nickname.text != ""
         {
              nameCheck.isHidden = false
@@ -486,10 +496,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func notifyUser(message:Any)
     {
-        print(message)
         if String(describing: message) == "[\"message\": ok]"
         {
-            let alert = UIAlertController(title: "Response", message: "Successful!", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Find Me", message: "The user has been added successfully!", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.clearData()}))
             self.present(alert, animated: true, completion: nil)
         }
@@ -510,6 +519,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         passCheck.isHidden = true
         cityCheck.isHidden = true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        countriesTable.isHidden = true
+        statesTable.isHidden = true
+        yearTable.isHidden = true
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == city
@@ -526,5 +540,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         return true
     }
+    @objc func didTappedOnBackgroundView(){
+        countriesTable.isHidden = true
+        statesTable.isHidden = true
+        yearTable.isHidden = true
+        city.resignFirstResponder()
+        password.resignFirstResponder()
+        nickname.resignFirstResponder()
+        
+    }
+    
 }
 

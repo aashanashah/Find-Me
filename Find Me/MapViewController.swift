@@ -25,30 +25,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         self.locationManager = CLLocationManager()
         
         // For use in foreground
-        if state == "Select State \u{25BE}"
-        {
-            self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         
-            if CLLocationManager.locationServicesEnabled()
-            {
+        if CLLocationManager.locationServicesEnabled()
+        {
             locationManager.delegate = self as CLLocationManagerDelegate
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
-            }
         }
-        else
-        {
-            let newString = state.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-            print(newString)
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(newString, completionHandler: {(placemarks, error) -> Void in
-                if let validPlacemark = placemarks?[0]{
-                    let span = MKCoordinateSpanMake(0.8, 0.8)
-                    let region = MKCoordinateRegion(center:(validPlacemark.location?.coordinate)! , span: span)
-                    self.mapView.setRegion(region, animated: true)
-                }
-            })
-        }
+      
         mapView.delegate = self
         mapView.mapType = MKMapType.standard
        
@@ -64,7 +49,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @objc func handleTap(gestureReconizer: UILongPressGestureRecognizer) {
+    @objc func handleTap(gestureReconizer: UILongPressGestureRecognizer)
+    {
         let allAnnotations = self.mapView.annotations
         self.mapView.removeAnnotations(allAnnotations)
         let location = gestureReconizer.location(in: mapView)
@@ -77,9 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         annotation.coordinate = coordinate
         annotation.title = "My location"
         mapView.addAnnotation(annotation)
-        getAddress(coordinate:coordinate)
-       
-       
+        getAddress(coordinate:coordinate) 
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D117569D1FB4279A00947C3A /* UsersMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D117569C1FB4279A00947C3A /* UsersMapViewController.swift */; };
 		D11F18FF1FA9134C000CA796 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11F18FE1FA9134C000CA796 /* MapViewController.swift */; };
 		D1222F341FA83289006F2040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1222F331FA83289006F2040 /* AppDelegate.swift */; };
 		D1222F361FA83289006F2040 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1222F351FA83289006F2040 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D117569C1FB4279A00947C3A /* UsersMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersMapViewController.swift; sourceTree = "<group>"; };
 		D11F18FE1FA9134C000CA796 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D1222F301FA83289006F2040 /* Find Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Find Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1222F331FA83289006F2040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				D11F18FE1FA9134C000CA796 /* MapViewController.swift */,
 				D1222F351FA83289006F2040 /* ViewController.swift */,
 				D1222F371FA83289006F2040 /* Main.storyboard */,
+				D117569C1FB4279A00947C3A /* UsersMapViewController.swift */,
 				D1490F091FADA2A100025F7F /* FilterViewController.swift */,
 				D1490F0B1FAE4CAF00025F7F /* ShowUsersViewController.swift */,
 				D1490F0D1FAE61DB00025F7F /* UsersTableViewCell.swift */,
@@ -280,6 +283,7 @@
 				D11F18FF1FA9134C000CA796 /* MapViewController.swift in Sources */,
 				D1490F0A1FADA2A100025F7F /* FilterViewController.swift in Sources */,
 				D1490F0E1FAE61DB00025F7F /* UsersTableViewCell.swift in Sources */,
+				D117569D1FB4279A00947C3A /* UsersMapViewController.swift in Sources */,
 				D1222F341FA83289006F2040 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -72,12 +72,12 @@
                                     <constraint firstAttribute="height" constant="50" id="lJ9-Ca-f43"/>
                                     <constraint firstAttribute="width" constant="200" id="yEq-Zb-yc7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="23"/>
-                                <state key="normal" title="Show Users">
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="22"/>
+                                <state key="normal" title="Show List">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showUsersWithSender:" destination="Yma-cT-p4C" eventType="touchUpInside" id="cwP-gT-IEh"/>
+                                    <action selector="showListWithSender:" destination="Yma-cT-p4C" eventType="touchUpInside" id="sTv-OO-6rT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPK-GY-YcH">
@@ -153,16 +153,30 @@
                                     <outlet property="delegate" destination="Yma-cT-p4C" id="9wM-fm-46d"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kV6-Wu-MeM">
+                                <rect key="frame" x="87.5" y="499" width="200" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.81764149350000004" blue="0.36884548610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="22"/>
+                                <state key="normal" title="Show Map">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showMapWithSender:" destination="Yma-cT-p4C" eventType="touchUpInside" id="Dcl-1y-TRK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UPK-GY-YcH" firstAttribute="leading" secondItem="vaB-ZT-cMZ" secondAttribute="leading" id="3Ra-vI-BNx"/>
                             <constraint firstItem="bgj-5u-eJn" firstAttribute="top" secondItem="B0S-30-9sS" secondAttribute="bottom" constant="100" id="5I0-V3-bKQ"/>
+                            <constraint firstItem="kV6-Wu-MeM" firstAttribute="height" secondItem="bgj-5u-eJn" secondAttribute="height" id="5dr-3c-ruG"/>
                             <constraint firstItem="DPv-hU-wLc" firstAttribute="leading" secondItem="PLA-It-VtR" secondAttribute="trailing" constant="30" id="Ba7-6x-O60"/>
                             <constraint firstItem="B0S-30-9sS" firstAttribute="top" secondItem="CCT-3a-eIN" secondAttribute="bottom" constant="50" id="F2l-PT-5Zf"/>
                             <constraint firstItem="FSg-Zr-OUN" firstAttribute="trailing" secondItem="DPv-hU-wLc" secondAttribute="trailing" constant="30" id="FTR-Ie-cYb"/>
+                            <constraint firstItem="kV6-Wu-MeM" firstAttribute="top" secondItem="bgj-5u-eJn" secondAttribute="bottom" constant="30" id="FZa-ck-j4y"/>
                             <constraint firstItem="vaB-ZT-cMZ" firstAttribute="height" secondItem="DPv-hU-wLc" secondAttribute="height" id="FxR-0A-K8x"/>
                             <constraint firstItem="Zz3-kj-out" firstAttribute="leading" secondItem="UPK-GY-YcH" secondAttribute="leading" id="G8H-Sf-J8s"/>
+                            <constraint firstItem="kV6-Wu-MeM" firstAttribute="leading" secondItem="bgj-5u-eJn" secondAttribute="leading" id="Gei-Qj-r38"/>
                             <constraint firstItem="7xJ-tR-h8x" firstAttribute="top" secondItem="PLA-It-VtR" secondAttribute="bottom" id="HV4-fr-cXZ"/>
                             <constraint firstItem="Zz3-kj-out" firstAttribute="trailing" secondItem="UPK-GY-YcH" secondAttribute="trailing" id="IWd-OK-uZR"/>
                             <constraint firstItem="B0S-30-9sS" firstAttribute="leading" secondItem="CCT-3a-eIN" secondAttribute="leading" id="Ibh-jF-nxc"/>
@@ -181,6 +195,7 @@
                             <constraint firstItem="fWp-wj-4Lb" firstAttribute="leading" secondItem="vaB-ZT-cMZ" secondAttribute="leading" id="ZdO-Jw-xtE"/>
                             <constraint firstItem="7xJ-tR-h8x" firstAttribute="leading" secondItem="DPv-hU-wLc" secondAttribute="leading" id="a7v-Jd-qN1"/>
                             <constraint firstItem="UPK-GY-YcH" firstAttribute="trailing" secondItem="vaB-ZT-cMZ" secondAttribute="trailing" id="aBD-Et-KmD"/>
+                            <constraint firstItem="kV6-Wu-MeM" firstAttribute="trailing" secondItem="bgj-5u-eJn" secondAttribute="trailing" id="jcJ-My-lGP"/>
                             <constraint firstItem="CCT-3a-eIN" firstAttribute="width" secondItem="PLA-It-VtR" secondAttribute="width" id="pGc-86-g3a"/>
                             <constraint firstItem="vaB-ZT-cMZ" firstAttribute="trailing" secondItem="DPv-hU-wLc" secondAttribute="trailing" id="rwg-Vc-O4E"/>
                             <constraint firstItem="fWp-wj-4Lb" firstAttribute="trailing" secondItem="vaB-ZT-cMZ" secondAttribute="trailing" id="uM1-bK-mYF"/>
@@ -195,7 +210,8 @@
                     <connections>
                         <outlet property="countriesTable" destination="7xJ-tR-h8x" id="GlM-zf-7Fw"/>
                         <outlet property="countryFilter" destination="DPv-hU-wLc" id="Zhg-J2-cEy"/>
-                        <outlet property="showUser" destination="bgj-5u-eJn" id="QIT-8W-xWr"/>
+                        <outlet property="showList" destination="bgj-5u-eJn" id="Gce-ZB-HkJ"/>
+                        <outlet property="showMap" destination="kV6-Wu-MeM" id="RMk-6T-5M2"/>
                         <outlet property="stateFilter" destination="vaB-ZT-cMZ" id="TaI-Yz-t8O"/>
                         <outlet property="statesTable" destination="fWp-wj-4Lb" id="Imh-Kr-Yhi"/>
                         <outlet property="yearFilter" destination="UPK-GY-YcH" id="Mf1-De-IoX"/>
@@ -217,24 +233,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMM-N2-foN">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ipe-d2-7qB">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="z8l-LA-UXk"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="List View"/>
-                                            <segment title="Map View"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="segmentValueChangedWithSender:" destination="oAJ-ex-DfF" eventType="valueChanged" id="15v-Lr-pRh"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ppO-WK-QrQ">
-                                        <rect key="frame" x="0.0" y="45" width="375" height="602"/>
-                                    </mapView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s04-Vk-7av">
-                                        <rect key="frame" x="0.0" y="45" width="375" height="602"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsersTableViewCell" rowHeight="119" id="Sfj-hb-nE3" customClass="UsersTableViewCell" customModule="Find_Me" customModuleProvider="target">
@@ -300,24 +300,13 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="oAJ-ex-DfF" id="gbR-RV-SNC"/>
-                                            <outlet property="delegate" destination="oAJ-ex-DfF" id="xI0-UN-1DA"/>
-                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="s04-Vk-7av" firstAttribute="leading" secondItem="cMM-N2-foN" secondAttribute="leading" id="0yx-uH-I4W"/>
-                                    <constraint firstItem="Ipe-d2-7qB" firstAttribute="leading" secondItem="cMM-N2-foN" secondAttribute="leading" id="10J-Z1-pWf"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ipe-d2-7qB" secondAttribute="trailing" id="1mC-Ed-oqn"/>
-                                    <constraint firstItem="Ipe-d2-7qB" firstAttribute="top" secondItem="cMM-N2-foN" secondAttribute="top" id="4hm-Dm-0p6"/>
-                                    <constraint firstItem="s04-Vk-7av" firstAttribute="top" secondItem="Ipe-d2-7qB" secondAttribute="bottom" constant="10" id="9eN-wZ-bne"/>
                                     <constraint firstAttribute="trailing" secondItem="s04-Vk-7av" secondAttribute="trailing" id="Awg-Yk-lKi"/>
-                                    <constraint firstAttribute="bottom" secondItem="ppO-WK-QrQ" secondAttribute="bottom" id="bR8-w6-IRe"/>
-                                    <constraint firstItem="ppO-WK-QrQ" firstAttribute="top" secondItem="Ipe-d2-7qB" secondAttribute="bottom" constant="10" id="eOd-pi-pp0"/>
-                                    <constraint firstItem="ppO-WK-QrQ" firstAttribute="leading" secondItem="cMM-N2-foN" secondAttribute="leading" id="oxb-NP-xGS"/>
-                                    <constraint firstAttribute="trailing" secondItem="ppO-WK-QrQ" secondAttribute="trailing" id="qZA-kS-hts"/>
+                                    <constraint firstItem="s04-Vk-7av" firstAttribute="top" secondItem="cMM-N2-foN" secondAttribute="top" id="oXO-hE-ABe"/>
                                     <constraint firstAttribute="bottom" secondItem="s04-Vk-7av" secondAttribute="bottom" id="u7X-M6-Qv0"/>
                                 </constraints>
                             </view>
@@ -332,13 +321,42 @@
                         <viewLayoutGuide key="safeArea" id="are-fh-YEd"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="ppO-WK-QrQ" id="Jsa-H6-5Tj"/>
                         <outlet property="userTable" destination="s04-Vk-7av" id="Rzd-Hs-4Ic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQG-Nf-S5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1740" y="94.902548725637189"/>
+        </scene>
+        <!--Users Map View Controller-->
+        <scene sceneID="Cok-02-WKQ">
+            <objects>
+                <viewController storyboardIdentifier="UsersMapViewController" id="1cd-V7-ow8" customClass="UsersMapViewController" customModule="Find_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jZf-tt-kJk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="itI-h7-Kmv">
+                                <rect key="frame" x="-0.5" y="20" width="375" height="647"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="itI-h7-Kmv" firstAttribute="centerY" secondItem="Ru7-K2-DJy" secondAttribute="centerY" id="8hK-Bq-Pda"/>
+                            <constraint firstItem="itI-h7-Kmv" firstAttribute="top" secondItem="Ru7-K2-DJy" secondAttribute="top" id="Ivu-ej-Hww"/>
+                            <constraint firstItem="itI-h7-Kmv" firstAttribute="centerX" secondItem="Ru7-K2-DJy" secondAttribute="centerX" id="pM1-w1-OSb"/>
+                            <constraint firstItem="Ru7-K2-DJy" firstAttribute="bottom" secondItem="itI-h7-Kmv" secondAttribute="bottom" id="qay-lu-vMJ"/>
+                            <constraint firstItem="itI-h7-Kmv" firstAttribute="width" secondItem="jZf-tt-kJk" secondAttribute="width" id="xke-3I-TbH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ru7-K2-DJy"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="itI-h7-Kmv" id="bZV-1k-qup"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTd-Kb-cc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2436" y="102"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="q1k-De-9hd">
@@ -409,12 +427,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCy-ah-4vT">
-                                                <rect key="frame" x="168" y="563" width="39" height="40"/>
+                                                <rect key="frame" x="112.5" y="563" width="150" height="40"/>
+                                                <color key="backgroundColor" red="1" green="0.81764149350000004" blue="0.36884548610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="3eF-YH-XNI"/>
                                                     <constraint firstAttribute="height" constant="40" id="avz-Sa-CCe"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
-                                                <state key="normal" title="Add"/>
+                                                <state key="normal" title="Add">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="onAddUserWithSender:" destination="SZY-z5-LTS" eventType="touchUpInside" id="QaI-St-qfm"/>
                                                 </connections>
@@ -651,6 +673,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IGP-zK-y42"/>
                     <connections>
+                        <outlet property="addButton" destination="OCy-ah-4vT" id="O3i-96-UXJ"/>
                         <outlet property="city" destination="FNE-H3-QNU" id="s1B-A3-soT"/>
                         <outlet property="cityCheck" destination="0hI-Ko-aGX" id="5re-wm-JXH"/>
                         <outlet property="countriesButton" destination="T55-cl-Yfh" id="iSv-TR-Sgh"/>

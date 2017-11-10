@@ -12,8 +12,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var countryFilter : UIButton!
     @IBOutlet var stateFilter : UIButton!
     @IBOutlet var yearFilter : UIButton!
-    @IBOutlet var showUser : UIButton!
-    
+    @IBOutlet var showList : UIButton!
+    @IBOutlet var showMap : UIButton!
     @IBOutlet var countriesTable : UITableView!
     @IBOutlet var statesTable : UITableView!
     @IBOutlet var yearTable : UITableView!
@@ -23,6 +23,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var yearTableData : Array<String>!
 
     override func viewDidLoad() {
+         super.viewDidLoad()
         countryFilter.setTitle("All \u{25BE}", for: .normal)
         stateFilter.setTitle("All \u{25BE}", for: .normal)
         yearFilter.setTitle("All \u{25BE}", for: .normal)
@@ -51,16 +52,18 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.statesTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         yearTableData = Array<String>()
-        yearTableData.append("All")
+        
         let data:Bundle = Bundle.main
         let yearplist:String? = data.path(forResource: "Year", ofType: "plist")
         if yearplist != nil
         {
             yearTableData = (NSArray.init(contentsOfFile: yearplist!) as! Array)
+            yearTableData.insert("All", at: 0)
         }
         yearTable.isHidden = true
         self.yearTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        super.viewDidLoad()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedOnBackgroundView)))
+       
 
         // Do any additional setup after loading the view.
     }
@@ -261,7 +264,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
-    @IBAction func showUsers(sender : UIButton)
+    func buildURL() -> String
     {
         var createURL = "http://bismarck.sdsu.edu/hometown/users?"
         if countryFilter.currentTitle != "All" && countryFilter.currentTitle != "All \u{25BE}"
@@ -284,8 +287,13 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 createURL+="year="+yearFilter.currentTitle!
             }
         }
+        return createURL
+    }
+    @IBAction func showMap(sender : UIButton)
+    {
         
-        let url = URL(string: createURL)
+        let taskurl = buildURL()
+        let url = URL(string: taskurl)
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
@@ -301,15 +309,39 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             DispatchQueue.main.async{
             if let list = json as? NSArray
             {
-                let showUsersViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShowUsersViewController") as! ShowUsersViewController
-                
-                showUsersViewController.list = list
-                self.navigationController?.pushViewController(showUsersViewController, animated: true)
+                let usersMapViewController = self.storyboard?.instantiateViewController(withIdentifier: "UsersMapViewController") as! UsersMapViewController
+                usersMapViewController.list = list
+                if self.stateFilter.currentTitle != "All" && self.stateFilter.currentTitle != "All \u{25BE}"
+                {
+                    usersMapViewController.dictLocation = ["state": self.stateFilter.currentTitle!]
+                }
+                else if self.countryFilter.currentTitle != "All" && self.countryFilter.currentTitle != "All \u{25BE}"
+                {
+                    usersMapViewController.dictLocation = ["country": self.countryFilter.currentTitle!]
+                }
+                else
+                {
+                    usersMapViewController.dictLocation = ["country":"USA"]
+                }
+                self.navigationController?.pushViewController(usersMapViewController, animated: true)
                 
             }
             
             }}
         
         task.resume()
+    }
+    @IBAction func showList(sender : UIButton)
+    {
+        let taskurl = buildURL()
+        let showUsersViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShowUsersViewController") as! ShowUsersViewController
+        showUsersViewController.url = taskurl
+        self.navigationController?.pushViewController(showUsersViewController, animated: true)
+        
+    }
+    @objc func didTappedOnBackgroundView(){
+        countriesTable.isHidden = true
+        statesTable.isHidden = true
+        yearTable.isHidden = true
     }
 }
