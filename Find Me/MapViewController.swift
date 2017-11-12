@@ -75,6 +75,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognize
         currannotation.coordinate = currLocation
         currannotation.title = "Current location"
         mapView.addAnnotation(currannotation)
+        UserDefaults.standard.set(currLocation.latitude, forKey: "Latitude")
+        UserDefaults.standard.set(currLocation.longitude, forKey: "Longitude")
     }
     
     func getAddress(coordinate:CLLocationCoordinate2D)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet var locate : UIButton!
     @IBOutlet var countriesButton : UIButton!
@@ -27,12 +27,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var stateTableData : Array<String>!
     var yearTableData : Array<String>!
     var addUser : [String:Any]!
+
     
     @IBOutlet var nickname : UITextField!
     @IBOutlet var password : UITextField!
     @IBOutlet var city : UITextField!
     
-    @IBOutlet var errLabel : UILabel!
+  
     
     override func viewDidLoad() {
          super.viewDidLoad()
@@ -97,10 +98,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         password.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         city.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        errLabel.isHidden = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedOnBackgroundView)))
-        
        
+        let gesture = UITapGestureRecognizer(target: self, action: nil)
+        
+        gesture.delegate = self
+        self.view.addGestureRecognizer(gesture)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -421,34 +424,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBAction func onAddUser(sender : UIButton)
     {
-        errLabel.isHidden = false
         if nameCheck.image == UIImage(named : "wrong")
         {
-            errLabel.text = "Enter valid Nickname"
+            let alert = UIAlertController(title: "Find Me", message: "Enter Valid Name", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else if passCheck.image == UIImage(named : "wrong")
         {
-            errLabel.text = "Enter valid Password"
+            let alert = UIAlertController(title: "Find Me", message: "Enter Valid Password", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else if countriesButton.currentTitle == "Select Country \u{25BE}"
         {
-            errLabel.text = "Choose valid Country"
+            let alert = UIAlertController(title: "Find Me", message: "Choose Valid Country", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else if statesButton.currentTitle == "Select State \u{25BE}"
         {
-            errLabel.text = "Choose valid State"
+            let alert = UIAlertController(title: "Find Me", message: "Choose Valid State", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else if cityCheck.image == UIImage(named : "wrong")
         {
-             errLabel.text = "Enter valid City"
+            let alert = UIAlertController(title: "Find Me", message: "Enter Valid City", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else if yearButton.currentTitle == "Select year \u{25BE}"
         {
-            errLabel.text = "Choose valid Year"
+            let alert = UIAlertController(title: "Find Me", message: "Choose Valid Year", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else
         {
-            errLabel.isHidden = true
             if locate.currentTitle == "Locate \u{25b8}"
             {
                 addUser = {[ "nickname" : nickname.text!,
@@ -540,14 +553,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         return true
     }
-    @objc func didTappedOnBackgroundView(){
-        countriesTable.isHidden = true
-        statesTable.isHidden = true
-        yearTable.isHidden = true
-        city.resignFirstResponder()
-        password.resignFirstResponder()
-        nickname.resignFirstResponder()
-        
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
+    {
+        var shouldReceive = true
+        if let clickedView = touch.view
+        {
+            if (clickedView.superview?.isKind(of: UITableViewCell.self))!
+            {
+                shouldReceive = false
+            }
+            else
+            {
+                countriesTable.isHidden = true
+                statesTable.isHidden = true
+                yearTable.isHidden = true
+            }
+        }
+       
+        return shouldReceive
     }
     
 }

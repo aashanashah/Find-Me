@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     @IBOutlet var countryFilter : UIButton!
     @IBOutlet var stateFilter : UIButton!
     @IBOutlet var yearFilter : UIButton!
@@ -62,8 +62,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         yearTable.isHidden = true
         self.yearTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedOnBackgroundView)))
-       
+        let gesture = UITapGestureRecognizer(target: self, action: nil)
+        
+        gesture.delegate = self
+        self.view.addGestureRecognizer(gesture)
 
         // Do any additional setup after loading the view.
     }
@@ -339,9 +341,23 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.pushViewController(showUsersViewController, animated: true)
         
     }
-    @objc func didTappedOnBackgroundView(){
-        countriesTable.isHidden = true
-        statesTable.isHidden = true
-        yearTable.isHidden = true
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
+    {
+        var shouldReceive = true
+        if let clickedView = touch.view
+        {
+            if (clickedView.superview?.isKind(of: UITableViewCell.self))!
+            {
+                shouldReceive = false
+            }
+            else
+            {
+                countriesTable.isHidden = true
+                statesTable.isHidden = true
+                yearTable.isHidden = true
+            }
+        }
+        
+        return shouldReceive
     }
 }
