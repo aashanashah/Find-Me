@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MapKit
+
 
 class ShowUsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,7 +15,7 @@ class ShowUsersViewController: UIViewController, UITableViewDelegate, UITableVie
    
     let cellReuseIdentifier = "UsersTableViewCell"
     
-    var searchLoc : CLLocationCoordinate2D!
+    
     var pageIndex : Int!
     var users = [Dictionary<String,Any>]()
     var url : String!
@@ -53,11 +53,11 @@ class ShowUsersViewController: UIViewController, UITableViewDelegate, UITableVie
         
             cell.city.text = (users[indexPath.row]["city"] as? String)! + ","
         
-        
             cell.state.text = (users[indexPath.row]["state"] as? String)! + ","
         
-        
             cell.country.text = users[indexPath.row]["country"] as? String
+        
+        cell.year.text = "\(users[indexPath.row]["year"]!)"
         
         return cell
     }
@@ -99,6 +99,7 @@ class ShowUsersViewController: UIViewController, UITableViewDelegate, UITableVie
             let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [Dictionary<String,Any>]
             if json.count > 0
             {
+                print(json)
                 DispatchQueue.main.async
                 {
                     self.users += json

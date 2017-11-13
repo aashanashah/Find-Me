@@ -13,6 +13,7 @@ class UsersTableViewCell: UITableViewCell {
     @IBOutlet var city : UILabel!
     @IBOutlet var state : UILabel!
     @IBOutlet var country : UILabel!
+    @IBOutlet var year : UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

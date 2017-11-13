@@ -254,25 +254,32 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7z-7D-4cl">
-                                                            <rect key="frame" x="20" y="52" width="335" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7z-7D-4cl">
+                                                            <rect key="frame" x="150" y="50.5" width="205" height="23.5"/>
+                                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfH-j1-zZ0">
+                                                            <rect key="frame" x="302.5" y="92" width="52.5" height="23.5"/>
+                                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLW-oC-9Jo">
+                                                            <rect key="frame" x="20" y="52" width="100" height="20.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="Hfw-lf-CJg"/>
+                                                                <constraint firstAttribute="width" constant="100" id="Ccl-wE-abz"/>
+                                                                <constraint firstAttribute="height" constant="20" id="LNB-Zz-CMC"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZB-aw-h5M">
-                                                            <rect key="frame" x="20" y="92" width="235" height="23.5"/>
-                                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfH-j1-zZ0">
-                                                            <rect key="frame" x="255" y="92" width="100" height="23.5"/>
+                                                            <rect key="frame" x="20" y="92.5" width="200" height="23.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="100" id="diL-me-ybi"/>
+                                                                <constraint firstAttribute="width" constant="200" id="p4W-Z5-0tn"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
                                                             <nil key="textColor"/>
@@ -280,16 +287,17 @@
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="pfH-j1-zZ0" secondAttribute="trailing" constant="20" id="8ug-09-TBS"/>
-                                                        <constraint firstItem="f7z-7D-4cl" firstAttribute="top" secondItem="jEm-bn-Kua" secondAttribute="bottom" constant="20" id="C8B-dN-LwP"/>
-                                                        <constraint firstItem="NZB-aw-h5M" firstAttribute="top" secondItem="f7z-7D-4cl" secondAttribute="bottom" constant="20" id="IOZ-eI-7Wn"/>
+                                                        <constraint firstItem="NZB-aw-h5M" firstAttribute="top" secondItem="kLW-oC-9Jo" secondAttribute="bottom" constant="20" id="7pJ-dN-YMe"/>
+                                                        <constraint firstAttribute="trailing" secondItem="f7z-7D-4cl" secondAttribute="trailing" constant="20" id="8MI-mS-h3L"/>
+                                                        <constraint firstItem="kLW-oC-9Jo" firstAttribute="top" secondItem="jEm-bn-Kua" secondAttribute="bottom" constant="20" id="9fW-qE-Wsr"/>
                                                         <constraint firstItem="jEm-bn-Kua" firstAttribute="leading" secondItem="BNr-J6-eGK" secondAttribute="leading" constant="20" id="JUy-sU-1a0"/>
-                                                        <constraint firstItem="f7z-7D-4cl" firstAttribute="leading" secondItem="BNr-J6-eGK" secondAttribute="leading" constant="20" id="Nqw-8c-GJ9"/>
-                                                        <constraint firstAttribute="trailing" secondItem="f7z-7D-4cl" secondAttribute="trailing" constant="20" id="QG9-am-Q8u"/>
-                                                        <constraint firstItem="pfH-j1-zZ0" firstAttribute="centerY" secondItem="NZB-aw-h5M" secondAttribute="centerY" id="YQl-fD-Zri"/>
-                                                        <constraint firstItem="pfH-j1-zZ0" firstAttribute="leading" secondItem="NZB-aw-h5M" secondAttribute="trailing" id="fJN-FL-gYu"/>
-                                                        <constraint firstItem="NZB-aw-h5M" firstAttribute="leading" secondItem="f7z-7D-4cl" secondAttribute="leading" id="qUb-Yh-Vps"/>
+                                                        <constraint firstItem="f7z-7D-4cl" firstAttribute="leading" secondItem="kLW-oC-9Jo" secondAttribute="trailing" constant="30" id="opG-Xd-2Uc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="pfH-j1-zZ0" secondAttribute="trailing" constant="20" id="tW2-g3-scI"/>
+                                                        <constraint firstItem="kLW-oC-9Jo" firstAttribute="leading" secondItem="jEm-bn-Kua" secondAttribute="leading" id="tjs-OB-eHV"/>
                                                         <constraint firstItem="jEm-bn-Kua" firstAttribute="top" secondItem="BNr-J6-eGK" secondAttribute="top" constant="10" id="vPI-ad-fzt"/>
+                                                        <constraint firstItem="f7z-7D-4cl" firstAttribute="centerY" secondItem="kLW-oC-9Jo" secondAttribute="centerY" id="wlw-Sf-tMb"/>
+                                                        <constraint firstItem="NZB-aw-h5M" firstAttribute="leading" secondItem="kLW-oC-9Jo" secondAttribute="leading" id="yfv-hD-Jdo"/>
+                                                        <constraint firstItem="pfH-j1-zZ0" firstAttribute="centerY" secondItem="NZB-aw-h5M" secondAttribute="centerY" id="z6s-7j-Dtn"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -297,6 +305,7 @@
                                                     <outlet property="country" destination="pfH-j1-zZ0" id="kc3-8W-uiF"/>
                                                     <outlet property="name" destination="jEm-bn-Kua" id="UVt-Es-awz"/>
                                                     <outlet property="state" destination="NZB-aw-h5M" id="3Yk-zX-RXH"/>
+                                                    <outlet property="year" destination="kLW-oC-9Jo" id="Kmd-Sr-swJ"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
